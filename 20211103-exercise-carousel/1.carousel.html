@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        /* outer style */
+        #outer{width: 520px;height: 333px;margin: 50px auto;
+        background-color: pink;padding: 10px 0;position: relative;
+        overflow: hidden;}
+        /* imglist style.the absolute position for imglist instead of li */
+        #imglist{list-style: none;position: absolute;}
+        /* li style */
+        #imglist li{float: left;padding: 0 10px;}
+        /* pointer style */
+        #pointer{position: absolute;bottom: 15px;}
+        #pointer a{width: 18px;height: 18px;
+            /* display: block;blank will show */
+            float: left;margin: 0 5px;opacity: 0.3;
+            /* ie8 */
+            filter: alpha(opacity=30); 
+            background-color: red;}
+            #pointer a:hover{background-color: black;}
+    </style>
+    <script src="./tools.js">
+         
+    </script>
+    <script>
+        window.onload=function(){
+            // set imglist width
+            var imglist=document.getElementById("imglist");
+            var imgarr=document.getElementsByTagName("img");
+            imglist.style.width=520*imgarr.length+"px";
+            // pointer Horizontally center.W instead of w in offsetWidth
+            var pointer=document.getElementById("pointer");
+            var outer=document.getElementById("outer");
+            pointer.style.left=(outer.offsetWidth-pointer.offsetWidth)/2
+            +"px"; 
+            var alla=document.getElementsByTagName("a");
+            var index=0;
+            alla[index].style.backgroundColor="black";
+            /* click hyperlink and switch to specified picture,
+            Bind click response functions for all hyperlinks
+             */
+             for(var i=0;i<alla.length;i++){
+                //  Add an attribute to each hyperlink!!
+                 alla[i].num=i;  
+                 alla[i].onclick=function(){
+                    // close autochange move,otherwise onclick move and autochange move at the same time 
+                     clearInterval(timer);
+                    //  !!
+                     index=this.num;
+                    //  switch pic
+                    // imglist.style.left=-520*index+"px";
+                    // change a;quatation!!
+                    seta();
+                    // !!use move function to switch pic,no auto move because move in onclick func
+
+                    move(imglist,"left",-520*index,20000,function(){
+                        // After the animation is done, turn on automatic switching\
+                        autochange();
+                    });
+                 };
+             };
+
+            //  switch pic auto
+            autochange();
+
+        // create a function for the selected a 
+        function seta(){ 
+            // check if the last pic
+            if(index>=imgarr.length-1){
+                index=0;
+            imglist.style.left=0;
+        }; 
+            // all a backgrondColor red
+            for(var i=0;i<alla.length;i++){
+                alla[i].style.backgroundColor="";}
+                // !!if above is set as red,because of Inline style, hover is gone
+                // selected a black!!
+                alla[index].style.backgroundColor="black";
+            }
+            var timer;
+            // create a func to auto swtich pic
+            function autochange(){
+                timer=setInterval(function(){
+                     index++;
+                     index%=imgarr.length;
+                    //  if want quick,change speed
+                     move(imglist,"left",-520*index,20000,function(){
+                        //  change a hyperlink
+                         seta();
+                     })
+                },3000)
+            }
+        
+        };
+    </script>
+</head>
+<body>
+    <!-- div as outer wrapper -->
+    <div id="outer">
+    <!-- ul,picture -->
+        <ul id="imglist">
+        <li><img src="./img/1.jpg"></li>
+        <li><img src="./img/2.jpg"></li>
+        <li><img src="./img/3.jpg"></li>
+        <li><img src="./img/4.jpg"></li>
+        <li><img src="./img/5.jpg"></li>
+        <li><img src="./img/1.jpg"></li>
+        </ul> 
+    <!-- pointer -->
+        <div id="pointer">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        </div>
+</div>
+</body>
+</html> 
