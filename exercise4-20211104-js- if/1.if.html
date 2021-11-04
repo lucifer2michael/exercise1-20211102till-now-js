@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var score = prompt("please enter xiaoming's final grade(0-100):");
+        if (score > 100 || score < 0 || isNaN(score)) {
+            alert("unofficial grade");
+        }
+        else {
+            if (score == 100) {
+                alert("reward a car");
+            } else if (score >= 80) {
+                alert("reward an iphone");
+            } else if (score >= 60) {
+                alert("reward a book")
+            } else {
+                alert("grounded for 2 months");
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
