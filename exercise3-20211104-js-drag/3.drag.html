@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{width: 100px;height: 100px;background-color: red;
+        position: absolute;}
+        #box2{width: 100px;height: 100px;background-color: yellow;
+        position: absolute;top: 50px;left: 150px;}
+        #img1{position: absolute;}
+    </style>
+    <script>
+        window.onload=function(){
+           /* drag box1
+           drag/onmousedown,move/onmousemove,stop/onmouseup
+            */ 
+            var box1=document.getElementById("box1");
+            var box2=document.getElementById("box2");
+            var img1=document.getElementById("img1");
+            // drag
+            drag(box1);
+            drag(box2);
+            drag(img1);
+            }
+        // create a function for drag
+        /* parameter obj(the drag subject)
+         */
+        function drag(obj){
+            obj.onmousedown=function(event){
+                obj.setCapture&&obj.setCapture();
+                event=event||window.event;
+                /* div offset  mouse.clientX-box.offsetLeft
+                               mouse.clientY-box.offsetTop
+                 */
+                 var ol=event.clientX-obj.offsetLeft;
+                 var ot=event.clientX-obj.offsetLeft;
+
+                // move,ignore scroll first
+                document.onmousemove=function(event){
+                    event=event||window.event;
+                    var left=event.clientX-ol;
+                    var top=event.clientY-ot;
+                    obj.style.left=left+"px";
+                    obj.style.top=top+"px";
+                }
+                // stop
+                document.onmouseup=function(){
+                    // cancel document onmousemove
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                    obj.releaseCapture&&obj.releaseCapture();
+                    // alert(1)
+                }
+                /* drag word or img(ctrl a), web search auto,default
+                ,but not take effort in ie8
+                 */
+                 return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    我是一段文字
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <img src="./1.jpg" id="img1">
+</body>
+</html>

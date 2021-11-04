@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{width: 100px;height: 100px;background-color: red;
+        position: absolute;}
+        #box2{width: 100px;height: 100px;background-color: yellow;
+        position: absolute;top: 50px;left: 150px;}
+    </style>
+    <script>
+        window.onload=function(){
+           /* drag box1
+           drag/onmousedown,move/onmousemove,stop/onmouseup
+            */ 
+            var box1=document.getElementById("box1");
+            // drag
+            box1.onmousedown=function(event){
+                event=event||window.event;
+                /* div offset  mouse.clientX-box.offsetLeft
+                               mouse.clientY-box.offsetTop
+                 */
+                 var ol=event.clientX-box1.offsetLeft;
+                 var ot=event.clientX-box1.offsetLeft;
+
+                // move,ignore scroll first
+                document.onmousemove=function(event){
+                    event=event||window.event;
+                    var left=event.clientX-ol;
+                    var top=event.clientY-ot;
+                    box1.style.left=left+"px";
+                    box1.style.top=top+"px";
+                }
+                // stop
+                document.onmouseup=function(){
+                    // cancel document onmousemove
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                    // alert(1)
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+</html>
