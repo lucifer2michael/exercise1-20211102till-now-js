@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script>
+		var a = 25;
+		if (a > 10 && a <= 20) {
+			// quotation!!
+			alert("a is more than 10 and a is no more than 20")
+		};
+
+
+		var age = 50;
+		if (age >= 60) {
+			alert("you have retired")
+		} else {
+			alert("you have not retired")
+		}
+
+
+		age = 200;
+		if (age > 100) {
+			alert("too old")
+		} else if (age > 80) {
+			alert("you are healthy")
+		} else if (age > 60) {
+			alert("you should take care of your health")
+		} else if (age > 30) {
+			alert("work hard")
+		} else if (age > 17) {
+			alert("university preparation")
+		} else {
+			alert("study hard")
+		};
+
+
+		age = 90;
+		if (age > 17 && age <= 30) {
+			alert("study and work")
+		} else if (age > 30 && age <= 60) {
+			alert("maybe married")
+		} else if (age > 60 && age <= 80) {
+			alert("keep fit")
+		} else {
+			alert("eat healthy")
+		};
+
+
+		var score=prompt("please enter xiaoming's final grade(0-100):");
+		if(score>100||score<0||isNaN(score)){
+			alert("unofficial score")
+			}else if(score==100){
+			alert("reward a car")
+		}else if(score>=80){
+			alert("reward an iphone")
+		}else if(score>=60){
+			alert("reward a book")
+		}else{
+			alert("grounded for 2 months")
+		}
+			
+
+			var height=prompt("please enter you height(CM):");
+			var money=prompt("please enter your money(million)");
+			var face=prompt("please enter your face score(PX,0-100)");
+			if(height>180&&money>1000&&face>50){
+				alert("grab the man")
+			}else if(height>180||money>1000||face>50){
+				alert("it is ok")
+			}else{
+				alert("sorry")
+			}
+
+
+			var num1=+prompt("please enter the first num:");
+			var num2=+prompt("please enter the second num:");
+			var num3=+prompt("please enter the third num:");
+
+			if(num1<num2&&num1<num3){
+				if(num2<num3){
+					alert(num1+","+num2+","+num3);
+				}else{
+					alert(num1+","+num3+","+num2);
+				}
+			}else if(num2<num1&&num2<num3){
+				if(num1<num3){
+					alert(num2+","+num1+","+num3)
+				}else {
+					alert(num2+","+num3+","+num1)
+				}
+			}else{
+				if(num1<num2){
+					alert(num3+","+num1+","+num2)
+				}else{
+					// there is not () after else
+					alert(num3+","+num2+","+num1)
+				}
+			};
+
+			var num=20;
+			if(num==10){
+				alert("haha");
+			}
+	</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
